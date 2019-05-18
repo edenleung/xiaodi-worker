@@ -15,6 +15,9 @@
     "autoload": {
         "psr-4": {
             "xiaodi\\Worker\\": "src"
-        }
+        },
+        "files": [
+            "src/command.php"
+        ]
     }
 }
