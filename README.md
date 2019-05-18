@@ -7,7 +7,7 @@ composer require xiaodi/xiaodi-worker:dev
 ```
 
 ### 配置
-`config/service`
+`config/service.php`
 ```php
 <?php
 
