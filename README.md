@@ -50,15 +50,15 @@ return [
 `参数二` 命令 如 [start|stop|reload|restart|status]  
 `参数三` 是否守护进程模式  
 
-`php think service 参数一 参数二 参数三`
+`php think service:run 参数一 参数二 参数三`
 
 ### 启动
 原生支持的命令 [start|stop|reload|restart|status]
 ```sh
-php think service Http start
+php think service:run Http start
 ```
 
 ### 守护进程
 ```sh
-php think service Http start -d
+php think service:run Http start -d
 ```
