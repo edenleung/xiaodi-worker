@@ -3,7 +3,7 @@ ThinkPHP5.1 命令行启动多个Worker
 
 ### 安装
 ```
-composer require xiaodi/xiaodi-worker:dev
+composer require xiaodi/xiaodi-worker:dev-master
 ```
 
 ### 配置
@@ -12,13 +12,16 @@ composer require xiaodi/xiaodi-worker:dev
 <?php
 
 return [
-  'workers' => [
-    'Http' => '\app\Worker\Http'
-  ]
+  'Http' => '\app\Worker\Http'
 ];
 ```
 
 ### 启动
 ```sh
 php think service Http start
+```
+
+### 守护进程
+```sh
+php think service Http start -d
 ```

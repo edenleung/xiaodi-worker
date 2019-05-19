@@ -3,5 +3,5 @@
 // 注册命令行命令
 
 \think\Console::addDefaultCommands([
-    'service' => \xiaodi\Worker\Command\Worker::class
+    'service:run' => \xiaodi\Worker\Command\Worker::class
 ]);
