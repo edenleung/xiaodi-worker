@@ -47,6 +47,7 @@ return [
 ```
 
 ### 启动
+原生支持的命令 [start|stop|reload|restart|status]
 ```sh
 php think service Http start
 ```
