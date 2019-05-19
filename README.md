@@ -45,6 +45,12 @@ return [
   'Http' => '\app\Worker\Http'
 ];
 ```
+### 命令
+`参数一` 服务名称  
+`参数二` 命令 如 [start|stop|reload|restart|status]  
+`参数三` 是否守护进程模式  
+
+`php think service 参数一 参数二 参数三`
 
 ### 启动
 原生支持的命令 [start|stop|reload|restart|status]
