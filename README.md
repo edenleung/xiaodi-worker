@@ -14,7 +14,29 @@ composer require xiaodi/xiaodi-worker:dev-master
 ```
 
 ### 配置
+`application/Worker/Http.php`
+
+```php
+<?php
+namespace app\Worker;
+
+use think\worker\Server;
+
+class Http extends Server
+{
+    protected $socket = 'http://0.0.0.0:55555';
+
+    public function onMessage($connection,$data)
+    {
+      $connection->send(json_encode($data));
+    }
+}
+
+```
+
 `config/service.php`
+`Http`: 服务名称  
+`\app\Worker\Http`: 服务的具体命名空间  
 ```php
 <?php
 
