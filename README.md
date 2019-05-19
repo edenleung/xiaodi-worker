@@ -10,7 +10,7 @@ ThinkPHP5.1 命令行启动多个Workerman 服务
 
 ### 安装
 ```
-composer require xiaodi/xiaodi-worker:dev-master
+composer require xiaodi/xiaodi-worker
 ```
 
 ### 配置
