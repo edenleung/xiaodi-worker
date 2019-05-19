@@ -6,6 +6,8 @@ use think\console\Input;
 use think\console\input\Argument;
 use think\console\input\Option;
 use think\console\Output;
+use xiaodi\Worker\Exceptions\WorkerDoesNotExist;
+use xiaodi\Worker\Exceptions\WorkerDoesNotFind;
 
 class Worker extends Command
 {
@@ -13,7 +15,7 @@ class Worker extends Command
 
     public function __construct($name = null)
     {
-        $this->config = config('service.workers');
+        $this->config = !empty(config('service.')) ? config('service.') : [];
 
         parent::__construct($name);
     }
@@ -21,29 +23,48 @@ class Worker extends Command
     protected function configure()
     {
         $services = array_keys($this->config);
-        $des  = !empty($services) ? 'Workers:' . implode('|', $services) : '未检测到任何Worker!';
+        $des  = !empty($services) ? 'Workers:' . implode('|', $services) : '未配置任何Worker!';
 
         $this->setName('service')
-            ->addArgument('name', Argument::OPTIONAL, "worker name")
-            ->addArgument('commands', Argument::OPTIONAL, "worker command")
+            ->addArgument('name', Argument::OPTIONAL, "worker name.")
+            ->addArgument('commands', Argument::OPTIONAL, "workerman worker command.")
+            ->addOption('-d', '-d', Option::VALUE_OPTIONAL, 'workerman worker in daemon mode.', '-d')
             ->setDescription($des);
     }
 
     protected function execute(Input $input, Output $output)
     {
-        global $argv;
-        
         $class = $this->getWorkerClass($input);
+        $command = $this->getCommand($input);
 
-        new $class;
-        $argv[0] = __FILE__;
-        $argv[1] = $this->getCommand($input);
-
-        Worker::runAll();
+        $this->start($class, $command);
     }
 
     /**
-     * Undocumented function
+     * 执行服务
+     *
+     * @param [type] $class
+     * @param [type] $command
+     * @return void
+     */
+    protected function start($class, $command = '')
+    {
+        global $argv;
+        $argv[0] = __FILE__;
+        $argv[1] = $command;
+
+        new $class;
+
+        // 开启守护进程模式
+        if ($this->input->hasOption('-d')) {
+            \Workerman\Worker::$daemonize = true;
+        }
+
+        \Workerman\Worker::runAll();
+    }
+
+    /**
+     * 获取命令
      *
      * @param Input $input
      * @return void
@@ -56,7 +77,7 @@ class Worker extends Command
     }
 
     /**
-     * Undocumented function
+     * 获取启动Worker名称
      *
      * @param Input $input
      * @return void
@@ -64,6 +85,14 @@ class Worker extends Command
     protected function getWorkerClass(Input $input)
     {
         $name = $input->getArgument('name');
+
+        if (is_null($name)) {
+            throw WorkerDoesNotFind::create();
+        }
+
+        if (!isset($this->config[$name])) {
+            throw WorkerDoesNotExist::create($name);
+        }
 
         return $this->config[$name];
     }
