@@ -1,5 +1,5 @@
 # xiaodi-worker
-ThinkPHP5.1 命令行启动多个Worker
+ThinkPHP5.1 命令行启动多个Workerman 服务
 
 [![Latest Stable Version](https://poser.pugx.org/xiaodi/xiaodi-worker/v/stable)](https://packagist.org/packages/xiaodi/xiaodi-worker)
 [![Total Downloads](https://poser.pugx.org/xiaodi/xiaodi-worker/downloads)](https://packagist.org/packages/xiaodi/xiaodi-worker)
