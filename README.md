@@ -34,7 +34,7 @@ class Http extends Server
 
 ```
 
-`config/service.php`
+`config/service.php`  
 `Http`: 服务名称  
 `\app\Worker\Http`: 服务的具体命名空间  
 ```php
