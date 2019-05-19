@@ -26,7 +26,7 @@ class Worker extends Command
         $des  = !empty($services) ? 'Workers:' . implode('|', $services) : '未配置任何Worker!';
 
         $this->setName('service')
-            ->addArgument('name', Argument::OPTIONAL, "worker name.")
+            ->addArgument('name', Argument::REQUIRED, "worker name.")
             ->addArgument('commands', Argument::OPTIONAL, "workerman worker command.")
             ->addOption('-d', '-d', Option::VALUE_OPTIONAL, 'workerman worker in daemon mode.', '-d')
             ->setDescription($des);
@@ -85,10 +85,6 @@ class Worker extends Command
     protected function getWorkerClass(Input $input)
     {
         $name = $input->getArgument('name');
-
-        if (is_null($name)) {
-            throw WorkerDoesNotFind::create();
-        }
 
         if (!isset($this->config[$name])) {
             throw WorkerDoesNotExist::create($name);
