@@ -6,10 +6,12 @@
             "email": "saybabi@163.com"
         }
     ],
+    "type": "think-extend",
     "require": {
         "php": ">=5.6.0",
         "topthink/framework": "5.1.*",
-        "workerman/workerman": "^3.5"
+        "workerman/workerman": "^3.5",
+        "topthink/think-installer": "^2.0"
     },
     "homepage": "https://xiaodim.com/",
     "license": "MIT",
@@ -18,7 +20,12 @@
             "xiaodi\\Worker\\": "src"
         },
         "files": [
-            "src/command.php"
+            "src/commands.php"
         ]
+    },
+    "extra": {
+        "think-config": {
+            "service": "src/config.php"
+        }
     }
 }
