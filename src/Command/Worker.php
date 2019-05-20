@@ -51,9 +51,13 @@ class Worker extends Command
     {
         global $argv;
         $argv[0] = __FILE__;
+
+        // todo windows 默认为 start 
         $argv[1] = $command;
 
         new $class;
+
+        // todo windows 没有守护进程
 
         // 开启守护进程模式
         if ($this->input->hasOption('-d')) {
@@ -91,5 +95,19 @@ class Worker extends Command
         }
 
         return $this->config[$name];
+    }
+
+    /**
+     * 是否windows环境
+     *
+     * @return boolean
+     */
+    protected function isWin()
+    {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            return true;
+        }
+
+        return false;
     }
 }
