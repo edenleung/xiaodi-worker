@@ -14,6 +14,7 @@ composer require xiaodi/xiaodi-worker
 ```
 
 ### 配置
+以下使用了[think-worker包](https://github.com/top-think/think-worker/tree/2.0)  
 `application/Worker/Http.php`
 
 ```php
