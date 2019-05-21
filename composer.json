@@ -21,7 +21,7 @@
             "xiaodi\\Worker\\": "src"
         },
         "files": [
-            "src/commands.php"
+            "src/command.php"
         ]
     },
     "extra": {
