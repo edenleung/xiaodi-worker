@@ -7,7 +7,7 @@ use think\console\input\Argument;
 use think\console\input\Option;
 use think\console\Output;
 use xiaodi\Worker\Exceptions\WorkerDoesNotExist;
-use xiaodi\Worker\Exceptions\WorkerDoesNotFind;
+use xiaodi\Worker\Exceptions\WorkerClassDoesNotExist;
 
 class Worker extends Command
 {
@@ -52,17 +52,16 @@ class Worker extends Command
         global $argv;
         $argv[0] = __FILE__;
 
-        // todo windows 默认为 start 
-        $argv[1] = $command;
+        if (false === $this->isWin()) {
+            $argv[1] = $command;
 
-        new $class;
-
-        // todo windows 没有守护进程
-
-        // 开启守护进程模式
-        if ($this->input->hasOption('-d')) {
-            \Workerman\Worker::$daemonize = true;
+            // 开启守护进程模式
+            if ($this->input->hasOption('-d')) {
+                \Workerman\Worker::$daemonize = true;
+            }
         }
+       
+        $worker = new $class;
 
         \Workerman\Worker::runAll();
     }
@@ -92,6 +91,11 @@ class Worker extends Command
 
         if (!isset($this->config[$name])) {
             throw WorkerDoesNotExist::create($name);
+        }
+
+        $class = $this->config[$name];
+        if (false === class_exists($class)) {
+            throw WorkerClassDoesNotExist::create($class);
         }
 
         return $this->config[$name];
