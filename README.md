@@ -4,7 +4,7 @@ ThinkPHP5.1 命令行启动多个Workerman 服务
 [![Latest Stable Version](https://poser.pugx.org/xiaodi/xiaodi-worker/v/stable)](https://packagist.org/packages/xiaodi/xiaodi-worker)
 [![Total Downloads](https://poser.pugx.org/xiaodi/xiaodi-worker/downloads)](https://packagist.org/packages/xiaodi/xiaodi-worker)
 [![Latest Unstable Version](https://poser.pugx.org/xiaodi/xiaodi-worker/v/unstable)](https://packagist.org/packages/xiaodi/xiaodi-worker)
-[![License](https://poser.pugx.org/xiaodi/xiaodi-worker/license)](https://packagist.org/packages/xiaodi/xiaodi-worker)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 [![Monthly Downloads](https://poser.pugx.org/xiaodi/xiaodi-worker/d/monthly)](https://packagist.org/packages/xiaodi/xiaodi-worker)
 [![Daily Downloads](https://poser.pugx.org/xiaodi/xiaodi-worker/d/daily)](https://packagist.org/packages/xiaodi/xiaodi-worker)
 
