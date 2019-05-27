@@ -15,7 +15,7 @@
         "topthink/think-installer": "^2.0"
     },
     "homepage": "https://xiaodim.com/",
-    "license": "MIT",
+    "license": "Anti 996",
     "autoload": {
         "psr-4": {
             "xiaodi\\Worker\\": "src"
