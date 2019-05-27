@@ -61,8 +61,16 @@ class Worker extends Command
             }
         }
        
-        $worker = new $class;
+        $backtrace = debug_backtrace();
+        $startFile = $backtrace[count($backtrace) - 1]['file'];
 
+        $unique_prefix = str_replace('/', '_', $startFile);
+        $className = explode('\\', $class);
+        
+        $pidFile = $unique_prefix . '-' . end($className);
+        \Workerman\Worker::$pidFile = "{$pidFile}.pid";
+        
+        $worker = new $class;
         \Workerman\Worker::runAll();
     }
 
